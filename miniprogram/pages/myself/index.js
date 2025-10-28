@@ -18,11 +18,11 @@ Page({
 
         // ⭐ 关键修正：移除未使用的图片路径
         cloudPaths: {
-            background: 'cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/myself_back.png',
-            editIcon: 'cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/myself_button_edit.png',
-            settingIcon: 'cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/myself_button_setting.png',
-            bubble: 'cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/myself_pet_back.png',
-            defaultAvatar: 'cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/myself_pet_avatar.png',
+            background: 'cloud://cloud1-5gni4f973eed1b7c.636c-cloud1-5gni4f973eed1b7c-1384464289/素材/myself_back.png',
+            editIcon: 'cloud://cloud1-5gni4f973eed1b7c.636c-cloud1-5gni4f973eed1b7c-1384464289/素材/myself_button_edit.png',
+            settingIcon: 'cloud://cloud1-5gni4f973eed1b7c.636c-cloud1-5gni4f973eed1b7c-1384464289/素材/myself_button_setting.png',
+            bubble: 'cloud://cloud1-5gni4f973eed1b7c.636c-cloud1-5gni4f973eed1b7c-1384464289/素材/myself_pet_back.png',
+            defaultAvatar: 'cloud://cloud1-5gni4f973eed1b7c.636c-cloud1-5gni4f973eed1b7c-1384464289/素材/myself_pet_avatar.png',
         },
     },
 
