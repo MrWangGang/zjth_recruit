@@ -1,0 +1,420 @@
+/* pages/index/index.wxss */
+
+/* 1. 容器和整体设置 */
+.container {
+  height: 100vh;
+}
+
+/* 2. 顶部自定义头部样式 - 仅用于 Logo/标题 */
+.custom-header.fixed-only {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #f7f7f7;
+  padding: 0 40rpx;
+}
+
+/* ⭐ 关键步骤 3：移除固定的 height，让 WXML 的 style 生效 */
+.header-placeholder-fixed {
+  /* 高度现在由 WXML 的 style 动态设定 */
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* ⭐ 修改：移除固定的 padding-top/bottom */
+}
+
+.location-switcher {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.logo-content-area {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon-wrapper {
+    position: relative;
+    width: 70rpx;
+    height: 70rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15rpx;
+    border: 2rpx solid #fff;
+    box-shadow: 0 0 0 2rpx #e0e0e0;
+}
+
+.logo-icon-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.logo-icon-front {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    z-index: 2;
+}
+
+.title-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title-main-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.title-main {
+    font-size: 38rpx;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.2;
+    margin-right: 10rpx;
+}
+
+.title-sub {
+    font-size: 25rpx;
+    color: #4a90e2;
+    line-height: 1.2;
+}
+
+.arrow-img {
+  height: 23rpx;
+  transform: translateY(2rpx);
+  margin-left: 5rpx;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  height: 80rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 0 20rpx;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.05);
+  margin-top: 30rpx;
+  width: 92%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.search-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+}
+
+.search-input {
+  flex: 1;
+  height: 100%;
+  font-size: 28rpx;
+}
+
+.search-placeholder {
+  color: #999;
+  font-size: 28rpx;
+}
+
+.banner-swiper {
+  width: 92%;
+  height: 280rpx;
+  margin: 30rpx auto 30rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-grid {
+  display: flex;
+  justify-content: space-around;
+  padding: 20rpx 0;
+  margin: 0 30rpx 30rpx 30rpx;
+  flex-wrap: nowrap;
+  background-color: #fff;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column; /* 垂直排列：图标在上，文字在下 */
+  align-items: center;
+  justify-content: center; /* 确保内容居中 */
+  width: 25%;
+  height: auto;
+  padding: 15rpx 0;
+  box-sizing: border-box;
+  position: relative;
+  transition: box-shadow 0.3s ease-out;
+}
+
+.nav-icon {
+  width: 90rpx; /* 略微缩小图标尺寸，为文字留出空间 */
+  height: 90rpx;
+  transform-origin: 50% 50%;
+  transition: all 0.3s ease-out;
+  margin-bottom: 8rpx; /* 图标下方留出一点空间 */
+}
+
+/* ⭐ 修改：导航标题样式 - 淡绿色、加粗 */
+.nav-title {
+    font-size: 24rpx; /* 标题字体大小 */
+    color: #6e796e; /* 标题颜色改为淡绿色 */
+    font-weight: bold; /* 加粗 */
+    white-space: nowrap; /* 防止换行 */
+}
+
+.activity-blocks {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  margin-bottom: 40rpx;
+}
+
+.activity-block-item {
+  border-radius: 20rpx;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.left-block {
+  width: 332rpx;
+  height: 396rpx;
+  background-color: #fff0f0;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.right-block {
+  width: 332rpx;
+  height: 396rpx;
+  background-color: #f0f0ff;
+}
+
+.block-full-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.tower-swiper {
+  display: block;
+  margin-top: 0rpx;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  position: absolute;
+  top: 110rpx;
+  left: 0;
+}
+
+/* ⭐ 新增或修改：为滚动项添加阴影 */
+.item {
+  width: 200rpx;
+  height: 254rpx;
+  display: block;
+  box-sizing: border-box;
+  border-radius: 16rpx;
+  /** 增加阴影，使其更具立体感 **/
+  box-shadow: 0 6rpx 16rpx rgba(0, 0, 0, 0.2); 
+}
+
+.overlay-wrapper {
+  position: absolute;
+  width: 200rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  overflow: hidden;
+  border-bottom-left-radius: 16rpx;
+  border-bottom-right-radius: 16rpx;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+}
+
+.item-text {
+  position: absolute;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #fff;
+  z-index: 5;
+}
+
+@keyframes pulse {
+  0% { 
+    transform: scale(1); 
+    box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1); 
+  }
+  50% { 
+    transform: scale(1.03); 
+    box-shadow: 0 8rpx 16rpx rgba(255, 165, 0, 0.4); 
+  }
+  100% { 
+    transform: scale(1); 
+    box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1); 
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { 
+    filter: drop-shadow(0 0 6rpx rgba(74, 144, 226, 0.4)); 
+    transform: scale(1); 
+  }
+  50% { 
+    filter: drop-shadow(0 0 25rpx rgba(91, 158, 234, 1)); 
+    transform: scale(1.08);  
+  }
+}
+
+.nav-item-1 .nav-icon { 
+  animation: glow-pulse 3.5s infinite ease-in-out; 
+}
+
+.nav-item-2 .nav-icon { 
+  animation: glow-pulse 3.5s infinite ease-in-out; 
+}
+
+.nav-item-3 .nav-icon { 
+  animation: glow-pulse 3.5s infinite ease-in-out; 
+}
+
+.nav-item-4 .nav-icon { 
+  animation: glow-pulse 3.5s infinite ease-in-out; 
+}
+
+.category-section { 
+  padding: 0 0 10rpx 0; 
+}
+
+.section-header { 
+  padding: 0 40rpx; 
+  margin-bottom: 20rpx; 
+}
+
+.section-title { 
+  font-size: 32rpx; 
+  font-weight: bold; 
+  color: rgb(53, 58, 54); 
+  margin-right: 15rpx; 
+}
+
+.section-subtitle { 
+  font-size: 24rpx; 
+  color: #999; 
+}
+
+.product-scroll { 
+  height: 280rpx; 
+  white-space: nowrap; 
+  padding-left: 40rpx; 
+}
+
+.product-list { 
+  display: flex; 
+  flex-direction: row; 
+}
+
+.product-card { 
+  display: inline-block; 
+  width: 200rpx; 
+  margin-right: 40rpx; 
+  border-radius: 15rpx; 
+  overflow: hidden; 
+  box-shadow: 0 8rpx 8rpx rgba(0, 0, 0, 0.08); 
+  background-color: #fff; 
+  position: relative;  
+  border-radius: 15rpx !important;
+
+}
+
+.product-img { 
+  width: 100%; 
+  height: 180rpx; 
+  border-bottom: 1rpx solid #eee; 
+}
+
+.product-info { 
+  padding: 10rpx 10rpx 15rpx; 
+  display: flex; 
+  flex-direction: column; 
+  border-radius: 15rpx !important;
+  height: 50rpx;
+}
+
+.product-brand { 
+  font-size: 22rpx; 
+  font-weight: bold; 
+  color: rgb(108, 138, 78); 
+  
+  /* ⭐ 核心修改：实现两行文本溢出省略 */
+  overflow: hidden;
+  display: -webkit-box !important; /* 增加 !important 强制生效 */
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* 限制为两行 */
+  line-height: 1.2;
+  white-space: normal !important; /* 确保文本可以换行 */
+  margin-top: -10rpx;
+  text-align: center;
+}
+
+/* 由于 WXML 中已移除 product-desc 字段，此样式在 WXML 中已无对应元素，可保留或移除 */
+.product-desc { 
+  font-size: 20rpx; 
+  color: #4a90e2; 
+  line-height: 1.2; 
+  overflow: hidden; 
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
+}
+
+.footer-ad-wrapper { 
+  display: flex; 
+  flex-direction: column; 
+  padding: 0 40rpx; 
+  margin-bottom: 20rpx; 
+}
+
+.footer-ad-img { 
+  width: 100%; 
+  border-radius: 20rpx; 
+  margin-bottom: 20rpx; 
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.1); 
+}

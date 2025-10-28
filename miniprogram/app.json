@@ -1,0 +1,46 @@
+{
+  "cloud": true,
+  "pages": [
+    "pages/index/index",
+    "pages/myself/index",
+    "pages/myself/edit/index",
+    "pages/myself/setting/index",
+    "pages/job/detail/index",
+    "pages/brief/index",
+    "pages/care/index",
+    "pages/job/index"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "useExtendedLib": {
+    "weui": true
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#4a90e2",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/pages/images/首页_false.png",
+        "selectedIconPath": "/pages/images/首页_true.png"
+      },
+      {
+        "pagePath": "pages/myself/index",
+        "text": "我的",
+        "iconPath": "/pages/images/我的_false.png",
+        "selectedIconPath": "/pages/images/我的_true.png"
+      }
+    ]
+  }
+}

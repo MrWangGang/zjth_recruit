@@ -1,0 +1,48 @@
+<scroll-view class="container" scroll-y wx:if="{{isLoaded}}">
+    
+    <view class="job-main-card">
+        <view class="job-main-media">
+            <image class="job-header-img" src="{{jobDetail.img}}" mode="aspectFill"></image>
+        </view>
+
+        <view class="job-header-info">
+            <text class="job-title">{{jobDetail.title}}</text>
+            <text class="job-type-tag gray-text">{{jobDetail.type}}</text>
+            
+            <text class="salary-range-text">{{jobDetail.salaryRange}}</text>
+        </view>
+    </view>
+    
+    <view class="detail-sections-wrap">
+
+        <view class="section-card">
+            <text class="section-title">工作职责</text>
+            <rich-text class="job-description-content" nodes="{{jobDutyNodes}}"></rich-text>
+        </view>
+
+        <view class="section-card">
+            <text class="section-title">任职资格</text>
+            <rich-text class="job-description-content" nodes="{{qualificationNodes}}"></rich-text>
+        </view>
+
+        <view class="section-card">
+            <text class="section-title">薪酬范围</text>
+            <text class="job-description-content salary-detail-text">{{jobDetail.salaryRange}}</text>
+        </view>
+        
+    </view>
+    
+    <view style="height: 150rpx;"></view>
+    
+</scroll-view>
+
+<view class="fixed-bottom-bar" wx:if="{{isLoaded}}">
+    <button 
+        class="deliver-button full-width-button status-{{jobStatus === '失效' ? 'closed' : (deliveryStatus === '已投递' || deliveryStatus === '重复投递' ? 'repeat' : 'new')}}" 
+        bindtap="{{jobStatus === '失效' ? '' : 'onDeliverTap'}}"
+        disabled="{{jobStatus === '失效'}}" 
+    >
+        
+        {{jobStatus === '失效' ? '该职位已关闭' : (deliveryStatus === '已投递' || deliveryStatus === '重复投递' ? '重复投递' : '立即投递简历')}}
+    </button>
+</view>

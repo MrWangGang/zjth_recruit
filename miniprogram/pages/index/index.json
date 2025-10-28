@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "泰鸿万立招聘入口",
+  "usingComponents": {
+    "tower-swiper": "/components/towerSwiper/tower-swiper/index",
+    "tower-swiper-item": "/components/towerSwiper/tower-swiper-item/index",
+    "authorize": "/components/authorize/index"
+  },
+  "navigationStyle": "custom"
+}

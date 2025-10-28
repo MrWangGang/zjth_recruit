@@ -1,0 +1,52 @@
+<view class="container">
+    
+    <view class="main-content">
+        <scroll-view class="category-sidebar" scroll-y>
+            <view wx:for="{{categories}}" wx:for-item="category" wx:key="_id"
+                class="category-item {{category.isActive ? 'active' : ''}}"
+                bindtap="changeCategory" data-type="{{category.type}}">
+                <text class="category-name">{{category.type}}</text>
+            </view>
+        </scroll-view>
+
+        <scroll-view class="seat-list-area" scroll-y>
+            <view class="seat-category-title">{{currentCategoryName}} ({{jobList.length}})</view>
+
+            <view wx:for="{{jobList}}" wx:for-item="job" wx:key="_id" 
+                class="seat-item {{job.status === '生效' ? 'bookable' : 'booked'}}"
+                bindtap="goToJobDetail" 
+                data-job-id="{{job._id}}"> 
+
+                <view class="seat-image-wrapper">
+                    <image class="seat-image-placeholder" src="{{job.img}}" mode="aspectFill"></image>
+                </view>
+                
+                <view class="seat-info">
+                    <view class="seat-row title-row">
+                        <text class="seat-title-text">{{job.title}}</text>
+                    </view>
+
+                    <view class="seat-row meta-line date-line">
+                        <text class="info-icon time-icon">🕒</text>
+                        <text class="info-text date-text">日期：{{job.createdAt}}</text>
+                    </view>
+
+                    <view class="seat-row meta-line salary-line">
+                        <text class="info-icon salary-icon">💰</text>
+                        <text class="info-text salary-text">薪资：{{job.salaryRange}}</text>
+                    </view>
+                    
+                    <view class="seat-row duty-line">
+                        <text class="info-icon duty-icon">✍️</text>
+                        <text class="info-text duty-text">职责：{{job.jobDuty}}</text>
+                    </view>
+                </view>
+                
+            </view>
+            
+            <view wx:if="{{jobList.length === 0}}" class="empty-list-tip">
+                当前分类暂无职位信息
+            </view>
+        </scroll-view>
+    </view>
+</view>

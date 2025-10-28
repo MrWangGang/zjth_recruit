@@ -1,0 +1,58 @@
+/* 容器 */
+.container {
+  min-height: 100vh;
+  background-color: #f7f7f7; /* 略微灰色背景，更贴近iOS/微信风格 */
+}
+
+/* 列表区域 */
+.list-area {
+  width: 100%; 
+  margin-top: 10px; /* 列表区域位于导航栏下方，留白 */
+  background-color: #fff;
+}
+
+/* 列表项通用样式 (增加行高) */
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* 调整上/下 padding，使行高更高 */
+  padding: 25px 25px; 
+  /* min-height: 25px; 保持不变，但 padding 确保了高度 */
+  border-bottom: 1px solid #eee; /* 分割线 */
+}
+
+.no-border-bottom {
+  border-bottom: none;
+}
+
+.item-text {
+  font-size: 16px;
+  color: #333;
+}
+
+/* 列表项右侧内容容器 */
+.item-right-content {
+  display: flex;
+  align-items: center;
+}
+
+/* 清理缓存的大小文本 */
+.cache-size {
+  font-size: 15px;
+  color: #999;
+  margin-right: 8px; /* 与箭头图标的间距 */
+}
+
+/* 箭头图标 (CSS 模拟) */
+.chevron-right {
+  width: 8px; /* 箭头宽度 */
+  height: 8px; /* 箭头高度 */
+  /* 使用边框创建箭头形状 */
+  border-top: 1.5px solid #ccc;
+  border-right: 1.5px solid #ccc;
+  /* 旋转 45 度使其指向右侧 */
+  transform: rotate(45deg);
+  /* 调整垂直对齐 */
+  margin-left: 5px; 
+}

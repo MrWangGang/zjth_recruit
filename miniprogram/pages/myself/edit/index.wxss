@@ -1,0 +1,196 @@
+/* pages/owner_profile/owner_profile.wxss (最终对齐版) */
+page {
+  background-color: #ffffff;
+  height: auto; 
+}
+
+.container {
+  padding: 0; 
+  padding-bottom: 40rpx;
+  display: block; 
+}
+
+/* 列表项 */
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35rpx 0; 
+  border-bottom: 1rpx solid #eeeeee; 
+  font-size: 32rpx;
+  color: #333333;
+  flex-shrink: 0;
+}
+
+/* 标签 */
+.label {
+  flex-shrink: 0;
+  width: auto;
+  min-width: 150rpx;
+  margin-right: 30rpx; 
+  padding-left: 44rpx; 
+  color: #333;
+}
+
+/* 右侧内容容器 (基础容器) - 负责将内容推到最右侧 */
+.item-content-right {
+  display: flex;
+  align-items: center;
+  flex: 1; 
+  justify-content: flex-end; 
+  padding-right: 44rpx; 
+}
+
+/* ------------------- 输入框和 Picker 对齐 ------------------- */
+
+/* 输入框 */
+.input {
+  text-align: right;
+  flex: 1;
+  color: #333333; 
+  font-size: 32rpx;
+  margin-right: 0; 
+}
+
+/* 只读 ID 样式 */
+.read-only-input {
+    background-color: transparent !important;
+    border: none !important;
+    color: #333333 !important; 
+    text-align: right;
+}
+
+/* 头像 */
+.avatar {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  background-color: #f0f0f0; 
+  margin-right: 0; 
+}
+
+/* ⭐ Picker 容器：让 picker 占据右侧全部空间，实现与 input 对齐 */
+.picker-fill-right {
+    flex: 1; /* 占据剩余空间 */
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 44rpx; /* 匹配右侧内边距 */
+    /* 确保 picker 整体高度与 input 对齐 */
+    min-height: 32rpx; 
+    line-height: 32rpx;
+}
+
+/* ⭐ Picker 内部的值的样式：确保文本右对齐 */
+.picker-input-value {
+    font-size: 32rpx; 
+    color: #333;
+    padding: 0;
+    text-align: right; 
+    width: 100%; 
+}
+
+/* ------------------- 单选框 (Radio) 样式 ------------------- */
+.radio-group-compact {
+    /* 继承 item-content-right 的 right-padding */
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+}
+
+.radio-item-compact {
+    display: flex;
+    align-items: center;
+    margin-left: 30rpx;
+    font-size: 30rpx;
+    color: #333;
+}
+
+.radio-item-compact text {
+    margin-right: 10rpx;
+}
+
+.radio-dot {
+    width: 32rpx; 
+    height: 32rpx;
+    border-radius: 50%;
+    border: 1rpx solid #ccc;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.radio-dot.checked {
+    border-color: #4a90e2; 
+}
+
+.radio-dot.checked::after {
+    content: '';
+    display: block;
+    width: 18rpx; 
+    height: 18rpx;
+    border-radius: 50%;
+    background-color: #4a90e2; 
+}
+
+/* ------------------- 简历上传 (回显文件名) ------------------- */
+.resume-upload-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* ⭐ 简历文件名回显样式 */
+.resume-filename {
+    flex-shrink: 1; /* 允许压缩 */
+    color: #999;
+    font-size: 28rpx;
+    text-align: right;
+    margin-right: 20rpx; 
+    
+    /* 文本溢出处理 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300rpx; 
+}
+
+.resume-upload-btn {
+    flex-shrink: 0; /* 按钮不允许被压缩 */
+    height: 60rpx; 
+    line-height: 60rpx; 
+    font-size: 28rpx; 
+    background-color: #f8f8f8;
+    color: #4a90e2;
+    border-radius: 6rpx;
+    margin: 0;
+    padding: 0 15rpx;
+    border: 1rpx solid #e0e0e0;
+    margin-left:140rpx !important;
+}
+
+/* --- 底部保存按钮 --- */
+.spacer-fill {
+    height: 100rpx; 
+    width: 100%;
+}
+
+.save-btn {
+    width: calc(100% - 88rpx); 
+    margin: 50rpx auto 50rpx auto; 
+    height: 88rpx; 
+    line-height: 88rpx;
+    background-color: #4a90e2; 
+    color: #ffffff;
+    font-size: 34rpx;
+    border-radius: 44rpx; 
+    text-align: center; 
+    display: block; 
+    box-sizing: border-box;
+}
+
+.save-btn[disabled] {
+    background-color: #bbbbbb;
+    color: #f0f0f0;
+}

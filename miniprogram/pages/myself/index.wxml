@@ -1,0 +1,117 @@
+<scroll-view class="container" scroll-y>
+
+<view class="background-image-container">
+    <image class="background-image" src="{{cloudPaths.background}}" mode="widthFix"></image>
+</view>
+
+<view class="user-card" style="padding-top: {{statusBarHeight}}px;">
+    <view class="user-main-info">
+        <image class="user-avatar" src="{{userInfo.avatar}}" mode="aspectFill"></image>
+        <view class="name-phone">
+            <text class="user-name">{{userInfo.name}}</text>
+            <block wx:if="{{userInfo.phone}}">
+                <text class="user-phone">{{userInfo.phone}}</text>
+            </block>
+            <block wx:else>
+                <text class="user-phone empty-text" bindtap="goToEditProfile">请完善个人信息</text>
+            </block>
+        </view>
+        <view class="nav-buttons">
+            <view class="nav-button" bindtap="goToEditProfile"><image class="nav-icon" src="{{cloudPaths.editIcon}}"></image></view>
+            <view class="nav-button" bindtap="goToSettings"><image class="nav-icon" src="{{cloudPaths.settingIcon}}"></image></view>
+        </view>
+    </view>
+</view>
+
+<view class="pets-section">
+    <image class="meow-bubble" src="{{cloudPaths.bubble}}" mode="aspectFit"></image>
+
+    <block wx:if="{{deliveries.length > 0}}">
+        <view class="delivery-list-container">
+            <view class="delivery-card">
+                <image class="delivery-card__avatar" src="{{deliveries[0].image}}" mode="aspectFill"></image>
+                <view class="delivery-card__details">
+                    <view class="delivery-card__name-line">
+                        <text class="delivery-card__name">{{deliveries[0].job_name}}</text>
+                    </view>
+                    <text class="delivery-card__desc">薪资: {{deliveries[0].salary_range}}</text>
+                </view>
+                <view class="delivery-card__button" bindtap="goToDeliveryDetail" data-job-id="{{deliveries[0].job_id}}">查看详情</view>
+            </view>
+        </view>
+    </block>
+
+    <block wx:else>
+        <view class="pet-card">
+            <image class="pet-card__avatar" src="{{cloudPaths.defaultAvatar}}"></image>
+            <view class="pet-card__details">
+                <text class="pet-card__name">您还没有投递过职位</text>
+                <text class="pet-card__desc">欢迎加入我们的大家庭,福利多多</text>
+            </view>
+            <view class="pet-card__button" bindtap="goToWork">去投递</view>
+        </view>
+    </block>
+</view>
+<view class="tabs-container">
+    <view class="tab-header active" data-tab="delivery" bindtap="switchTab">我的投递</view>
+</view>
+
+<view class="tab-content">
+    <view class="delivery-list" wx:if="{{activeTab === 'delivery'}}">
+        <block wx:if="{{deliveries.length > 0}}">
+            <view class="delivery-item" wx:for="{{deliveries}}" wx:key="_id" bindtap="goToDeliveryDetail" data-job-id="{{item.job_id}}">
+
+                <view class="delivery-img-wrap">
+                    <image class="delivery-img" src="{{item.image}}" mode="aspectFill" lazy-load="true"></image>
+
+                </view>
+
+                <view class="delivery-details">
+                    <view>
+                        <view class="delivery-title">{{item.job_name}}</view>
+
+                        <!-- 1. 投递日期 (文本图标: 🕒) -->
+                        <view class="delivery-info-line">
+                            <text class="activity-info-icon time-icon">🕒</text>
+                            <text class="delivery-time">投递：{{item.deliver_date}}</text>
+                        </view>
+
+                        <!-- 2. 职位类型 (文本图标: 📌) -->
+                        <view class="delivery-info-line">
+                            <text class="activity-info-icon type-icon">📌</text>
+                            <text class="delivery-type">类型：{{item.job_type}}</text>
+                        </view>
+                        
+                        <!-- 3. 薪资范围 (使用 💰 图标) -->
+                        <view class="delivery-info-line">
+                            <text class="activity-info-icon salary-icon">💰</text>
+                            <text class="delivery-salary">薪资：{{item.salary_range}}</text>
+                        </view>
+
+                        <!-- 4. 职位职责 (使用 ✍️ 图标) -->
+                        <view class="delivery-info-line">
+                            <text class="activity-info-icon job-duty-icon">✍️</text>
+                            <text class="delivery-desc">职责：{{item.job_duty}}</text>
+                        </view>
+
+                    </view>
+                </view>
+            </view>
+        </block>
+
+        <block wx:if="{{isLoadMore}}">
+            <view class="loading-more">正在加载...</view>
+        </block>
+
+        <block wx:elif="{{!hasMore && deliveries.length > 0}}">
+            <view class="empty-state">--- 已经到底了 ---</view>
+        </block>
+
+        <block wx:elif="{{deliveries.length === 0 && !isLoadMore}}">
+            <view class="empty-state">暂无相关投递记录</view>
+        </block>
+    </view>
+</view>
+</scroll-view>
+
+<authorize bindloginsuccess="onLoginSuccess" wx:if="{{!isLoggedIn}}"></authorize>

@@ -1,0 +1,101 @@
+<scroll-view class="container" scroll-y>
+    
+    <view class="custom-header fixed-only" style="padding-top: {{statusBarHeight}}px;">    
+      <view class="header-content" style="height: {{navBarContentHeight}}px;">
+        <view class="location-switcher">
+          <view class="logo-content-area">
+              <view class="logo-icon-wrapper">
+                  <image class="logo-icon-back" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/index_logo.png" mode="aspectFit"></image> 
+              </view>
+              <view class="title-wrapper">
+                  <view class="title-main-wrapper"> 
+                      <text class="title-main">泰鸿万立</text>
+                  </view>
+                  <text class="title-sub">z j t i o n</text>
+              </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <view class="header-placeholder-fixed" style="height: {{navBarHeight}}px;"></view>
+    
+    <swiper class="banner-swiper" 
+          indicator-dots="true"  
+          autoplay="true"  
+          interval="2000"  
+          duration="500"
+          indicator-color="rgba(255, 255, 255, 0.6)"
+          indicator-active-color="#fff">
+      <swiper-item wx:for="{{bannerList}}" wx:key="id"  
+                   bindtap="goToBannerDetail"  
+                   data-id="{{item.id}}"
+                   data-link="{{item.link}}">
+        <image class="banner-img" src="{{item.url}}" mode="aspectFill"></image>
+      </swiper-item>
+    </swiper>
+  
+    <view class="nav-grid">
+      <view class="nav-item nav-item-1" bindtap="goToStore" data-page="store">
+        <image class="nav-icon" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/更多职位.png"></image>
+        <text class="nav-title">更多职位</text>
+      </view>
+      <view class="nav-item nav-item-2" bindtap="goToRights" data-page="rights">
+        <image class="nav-icon" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/公司简介.png"></image>
+        <text class="nav-title">公司简介</text>
+      </view>
+     <view class="nav-item nav-item-3" bindtap="goToHealth" data-page="health">
+        <image class="nav-icon" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/员工关怀.png"></image>
+        <text class="nav-title">员工关怀</text>
+      </view>
+      <view class="nav-item nav-item-4" bindtap="goToPets" data-page="pets">
+        <image class="nav-icon" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/我的投递.png"></image>
+        <text class="nav-title">我的投递</text>
+      </view>
+    </view>
+  
+    <view class="activity-blocks">
+      <view class="activity-block-item left-block" bindtap="goToActivityBlock">
+        <image class="block-full-img" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/招聘.png" mode="aspectFill"></image>
+      </view>
+      <view class="activity-block-item right-block" bindtap="goToAllianceBlock">
+        <image class="block-full-img" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/热门职位.png" mode="aspectFill"></image>
+        <tower-swiper class="tower-swiper" active="3" autoplay="true" interval="2000">
+          <tower-swiper-item wx:for="{{towerItems}}" wx:key="id">
+            <image class="item" src="{{item.url}}" mode="aspectFill"></image>
+            <view class="overlay-wrapper">
+              <image class="overlay" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/蒙版.png" mode="scaleToFill"></image>
+              <text class="item-text">{{item.text}}</text>
+            </view>
+          </tower-swiper-item>
+        </tower-swiper>
+      </view>
+    </view>
+  
+    <block wx:for="{{categories}}" wx:key="name">
+     <view class="category-section">
+      <view class="section-header">
+        <text class="section-title">「{{item.name}}」</text>
+          <text class="section-subtitle">最新发布的{{item.name}}职位</text>
+        </view>
+        <scroll-view class="product-scroll" scroll-x>
+          <view class="product-list">
+      <view class="product-card"  
+            wx:for="{{item.products}}"  
+            wx:for-item="product"  
+            wx:key="id"
+            bindtap="goJobDetail"
+            data-job-id="{{product.id}}">
+          <image class="product-img" src="{{product.img}}" mode="aspectFill"></image>
+          <view class="product-info">
+              <text class="product-brand">{{product.title}}</text>
+          </view>
+      </view>
+          </view>
+     </scroll-view>
+    </view>
+    </block>
+  </scroll-view>
+  
+  
+  <authorize bindloginsuccess="onLoginSuccess" wx:if="{{!isLoggedIn}}"></authorize>

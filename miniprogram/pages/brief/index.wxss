@@ -1,0 +1,263 @@
+/** 基础颜色定义 **/
+.text-primary { color: #0f766e; } /* Teal-700 */
+.border-primary { border-color: #0f766e; }
+.text-teal { color: #14b8a6; } /* Teal-500 */
+.text-teal-dark { color: #0f766e; }
+.text-gray { color: #4b5563; } /* Gray-600 */
+.text-gray-dark { color: #4b5563; }
+.text-gray-dark-title { color: #1f2937; } /* Gray-900 */
+.timeline-bg { background-color: #f9fafb; } /* Gray-50 */
+
+/* 核心容器 */
+.container {
+    min-height: 100vh;
+    background-color: #f3f4f6; /* bg-gray-100 */
+    padding: 0; 
+    box-sizing: border-box;
+    /* 确保容器本身没有导致溢出 */
+    width: 100%;
+}
+
+/* 顶层容器：模拟纸张或卡片的质感 */
+.main-card {
+    width: 100%;
+    background-color: #ffffff; /* bg-white */
+    border-radius: 48rpx; /* rounded-3xl */
+    /* 模拟质感阴影 */
+    box-shadow: 0 20rpx 25rpx -5rpx rgba(0, 0, 0, 0.1), 0 10rpx 10rpx -5rpx rgba(0, 0, 0, 0.04); 
+    
+    /* 关键修复 1: 移除水平内边距，只保留顶部和底部内边距 */
+    padding: 40rpx 0; 
+}
+
+/* -------------------------------------------
+   关键修复 2: 为所有内部内容部分添加水平内边距 (30rpx)
+   ------------------------------------------- */
+.header-section,
+.content-section,
+.footer-section {
+    padding-left: 30rpx;
+    padding-right: 30rpx;
+}
+
+
+/* 头部与标题 */
+.header-section {
+    margin-bottom: 60rpx;
+    border-bottom: 2rpx solid #f3f4f6;
+    padding-bottom: 30rpx;
+}
+
+.title {
+    font-size: 58rpx; 
+    font-weight: 800; 
+    color: #1f2937;
+    line-height: 1.2;
+    display: block;
+    word-break: break-all; /* 确保长单词也能断行 */
+}
+
+.subtitle {
+    margin-top: 16rpx;
+    font-size: 30rpx; 
+    font-weight: 500;
+    display: block;
+}
+
+/* 内容模块 */
+.content-section {
+    margin-bottom: 80rpx;
+}
+
+.section-title {
+    font-size: 44rpx; 
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 40rpx;
+    
+    /* 调整左边距，确保标题的左侧对齐 */
+    padding-left: 0; 
+    margin-left: 0; 
+    
+    border-left-width: 8rpx;
+    border-left-style: solid;
+    display: block;
+    /* 额外的小左边距，以区分 border */
+    margin-left: 10rpx; 
+    padding-left: 10rpx;
+}
+.section-title.border-primary {
+    margin-left: 0;
+    padding-left: 10rpx;
+}
+
+
+/* 富文本内容基础样式 (用于 profile, list) */
+.rich-text-content .paragraph {
+    font-size: 28rpx;
+    color: #374151; /* Gray-700 */
+    line-height: 1.75;
+    margin-bottom: 30rpx;
+    display: block; 
+    /* 确保长句子能够自动换行 */
+    word-wrap: break-word; 
+    white-space: pre-wrap; 
+}
+
+
+/* -------------------------------------------
+   ⭐ 酷炫时间线重构 (Cool Timeline Redesign)
+   ------------------------------------------- */
+.timeline-list {
+    margin-top: 40rpx;
+    display: flex;
+    flex-direction: column;
+    /* 增加左侧内边距，为时间线留出空间 */
+    padding-left: 22rpx; 
+    gap: 30rpx; 
+    position: relative; /* 确保 ::before/::after 定位正确 */
+}
+
+.timeline-item {
+    /* 移除之前的 border-left */
+    padding: 30rpx 20rpx; 
+    border-radius: 16rpx;
+    background-color: #f9fafb; /* 使用浅背景 */
+    
+    /* 增强卡片浮动感 */
+    box-shadow: 0 6rpx 12rpx rgba(0, 0, 0, 0.1); 
+    
+    position: relative;
+    overflow: visible; /* 允许伪元素在外部显示 */
+    
+    /* 禁用之前的 border-left 样式 */
+    border-left: none !important; 
+}
+
+/* 1. 垂直线 - 贯穿整个 timeline-list 的线（通过 item::before 实现连接） */
+.timeline-item::before {
+    content: ""; 
+    position: absolute;
+    /* 确保线位于 item 外部，与 timeline-list 的 padding-left 对齐 */
+    left: -20rpx; 
+    top: 0;
+    bottom: 0;
+    width: 4rpx; 
+    background-color: #14b8a6; /* Teal line */
+    z-index: 1;
+}
+
+/* 2. 圆点/节点 - 位于垂直线上，突出事件节点 */
+.timeline-item::after {
+    content: " "; 
+    position: absolute;
+    /* 调整定位让圆点精确覆盖垂直线 */
+    left: -32rpx; 
+    top: 25rpx; 
+    width: 20rpx;
+    height: 20rpx;
+    border-radius: 50%;
+    background-color: #0f766e; /* Dot center color */
+    border: 4rpx solid #ffffff; /* White border for lift off the card */
+    box-shadow: 0 0 0 4rpx rgba(20, 184, 166, 0.3); /* Subtle glow effect */
+    z-index: 2;
+}
+
+/* 3. 优化第一个和最后一个节点的线段 */
+.timeline-item:first-child::before {
+    top: 40rpx; /* Line starts below the dot */
+}
+
+.timeline-item:last-child::before {
+    /* 结束点，将 bottom 设置为 dot 的高度 */
+    bottom: 40rpx; 
+    height: auto; 
+}
+
+
+/* 4. 文本样式 */
+.timeline-strong {
+    font-size: 32rpx; /* 年份更大更突出 */
+    font-weight: 800;
+    display: block;
+    margin-bottom: 6rpx;
+}
+
+.timeline-text {
+    font-size: 28rpx;
+    color: #4b5563;
+    line-height: 1.5;
+    display: block;
+}
+
+/* 质量体系/产品列表 (模拟有序列表) */
+.product-list {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-top: 20rpx;
+}
+
+.product-item {
+    font-size: 28rpx;
+    color: #374151;
+    line-height: 1.8;
+    margin-bottom: 10rpx;
+    display: block;
+    padding-left: 30rpx; 
+    position: relative;
+}
+
+/* 模拟列表点的样式 */
+.product-item::before {
+    content: "✓"; 
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 28rpx;
+    color: #14b8a6; 
+    font-weight: bold;
+}
+
+
+/* 底部联系信息 */
+.footer-section {
+    padding-top: 30rpx;
+    margin-top: 50rpx;
+    border-top: 2rpx solid #e5e7eb;
+    text-align: left; 
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-title {
+    font-size: 32rpx; 
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 16rpx;
+    text-align: center; 
+}
+
+.footer-contact {
+    font-size: 26rpx;
+    color: #6b7280;
+    display: block;
+    margin-bottom: 4rpx;
+    line-height: 1.5;
+    word-break: break-word; 
+}
+
+.contact-link {
+    font-size: 26rpx;
+    margin-top: 10rpx;
+    display: block;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.footer-copyright {
+    margin-top: 20rpx;
+    font-size: 20rpx;
+    color: #9ca3af; 
+    text-align: center;
+}

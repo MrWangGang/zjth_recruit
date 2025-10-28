@@ -1,0 +1,131 @@
+<view class="container">
+    
+    <form bindsubmit="savePet" report-submit="{{true}}">
+        
+        <view class="list-item avatar-row" bindtap="chooseAvatar">
+            <text class="label">头像</text>
+            <view class="item-content-right">
+                <image class="avatar" src="{{avatar}}" mode="aspectFill"></image>
+            </view>
+        </view>
+
+        <view class="list-item">
+            <text class="label">昵称</text>
+            <view class="item-content-right align-input">
+                <input class="input" placeholder="请输入昵称" maxlength="8" value="{{name}}" name="name" data-field="name" bindinput="onNicknameInput" />
+            </view>
+        </view>
+
+
+
+        <view class="list-item">
+            <text class="label">手机号</text>
+            <view class="item-content-right align-input">
+                <input class="input" 
+                        placeholder="请输入手机号" 
+                        type="number"
+                        maxlength="11"
+                        value="{{phoneNumber}}" 
+                        name="phoneNumber" 
+                        data-field="phoneNumber" 
+                        bindinput="onPhoneInput"
+                />
+            </view>
+        </view>
+        
+        <view class="list-item">
+            <text class="label">性别</text>
+            <view class="item-content-right radio-group-compact">
+                <view class="radio-item-compact" bindtap="selectGender" data-value="男">
+                    <text>男</text>
+                    <view class="radio-dot {{gender === '男' ? 'checked' : ''}}"></view>
+                </view>
+                <view class="radio-item-compact" bindtap="selectGender" data-value="女">
+                    <text>女</text>
+                    <view class="radio-dot {{gender === '女' ? 'checked' : ''}}"></view>
+                </view>
+            </view>
+        </view>
+
+        <view class="list-item">
+            <text class="label">年龄</text>
+            <view class="item-content-right align-input">
+                <input class="input" 
+                        placeholder="请输入年龄" 
+                        type="number"
+                        maxlength="3"
+                        value="{{age}}" 
+                        name="age" 
+                        data-field="age" 
+                        bindinput="onAgeInput"
+                />
+            </view>
+        </view>
+        
+        <view class="list-item">
+            <text class="label">籍贯</text>
+            <picker mode="region" value="{{region}}" bindchange="onRegionChange" class="picker-fill-right">
+                <view class="picker-input-value">
+                    {{regionDisplay || '请选择籍贯'}}
+                </view>
+            </picker>
+        </view>
+        
+        <view class="list-item">
+            <text class="label">学历</text>
+            <picker mode="selector" range="{{educationArray}}" value="{{educationIndex}}" bindchange="onEducationChange" class="picker-fill-right">
+                <view class="picker-input-value">
+                    {{educationIndex === null ? '请选择学历' : educationArray[educationIndex]}}
+                </view>
+            </picker>
+        </view>
+
+        <view class="list-item">
+            <text class="label">全日制</text>
+            <view class="item-content-right radio-group-compact">
+                <view class="radio-item-compact" bindtap="selectFullTime" data-value="是">
+                    <text>是</text>
+                    <view class="radio-dot {{isFullTime === '是' ? 'checked' : ''}}"></view>
+                </view>
+                <view class="radio-item-compact" bindtap="selectFullTime" data-value="否">
+                    <text>否</text>
+                    <view class="radio-dot {{isFullTime === '否' ? 'checked' : ''}}"></view>
+                </view>
+            </view>
+        </view>
+        
+        <view class="list-item">
+            <text class="label">院校</text>
+            <view class="item-content-right align-input">
+                <input class="input" placeholder="请输入院校名称" value="{{schoolName}}" name="schoolName" data-field="schoolName" bindinput="onSchoolNameInput" />
+            </view>
+        </view>
+
+        <view class="list-item">
+            <text class="label">专业</text>
+            <view class="item-content-right align-input">
+                <input class="input" placeholder="请输入专业名称" value="{{major}}" name="major" data-field="major" bindinput="onMajorInput" />
+            </view>
+        </view>
+
+        <view class="list-item">
+            <text class="label">毕业时间</text>
+            <picker mode="date" value="{{graduationDate}}" bindchange="onDateChange" fields="month" class="picker-fill-right">
+                <view class="picker-input-value">
+                    {{graduationDate || '请选择毕业年月'}}
+                </view>
+            </picker>
+        </view>
+
+        <view class="list-item">
+            <text class="label">简历上传</text>
+            <view class="item-content-right resume-upload-group">
+                <button class="resume-upload-btn" bindtap="chooseResume" disabled="{{isSaving}}">
+                    {{resumePath ? '重新选择' : '点击选择简历'}}
+                </button>
+            </view>
+        </view>
+        <view class="save-btn final-flow-btn" bindtap="savePet" disabled="{{isSaving}}">确定</view>
+       
+    </form>
+</view>

@@ -1,0 +1,237 @@
+/* ------------------------------------------- */
+/* 极度严格的全局和根元素强制重置 */
+/* ------------------------------------------- */
+page {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+  width: 100vw; /* 强制视口宽度 */
+  overflow-x: hidden;
+}
+.container {
+  /* ⭐ 确保占据整个视口，并设置为 Flex 容器 */
+  height: 100vh;
+  background-color: #f7f7f7;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+  width: 100vw;
+  
+  display: flex;
+  flex-direction: row; /* 横向布局 */
+  position: relative; /* 根容器 */
+}
+
+/* ------------------------------------------- */
+/* 主要内容区域：分栏布局 (保持 Flex 结构) */
+/* ------------------------------------------- */
+.main-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 100%; /* 占据 container 的全部高度 */
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative;
+}
+
+/* 左侧分类栏 (固定位置和质感) */
+.category-sidebar {
+  width: 100px;
+  background-color: #f7f7f7;
+  flex-shrink: 0;
+  height: 100%; /* 继承父容器高度，实现侧边栏固定高度 */
+  
+  /* ⭐ 新增：质感和固定视觉效果 */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* 右侧阴影，增强质感 */
+  z-index: 10; /* 确保它在右侧内容之上 */
+  
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative; /* 确保 z-index 有效 */
+  left: 0;
+}
+
+.category-item {
+  width: 100%;
+  padding: 12px 8px 12px 8px; /* 相应缩小内边距 */
+  border-left: 3px solid transparent;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0 !important;
+}
+
+.category-item.active {
+  background-color: #fff;
+  border-left-color: #e51c23;
+  /* ⭐ 增加右侧内阴影，提升激活项的质感 */
+  box-shadow: 1px 0 0 0 #fff, inset 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.category-name {
+  font-size: 15px; /* 字体缩小 */
+  font-weight: bold;
+  color: #333;  
+}
+
+
+/* 右侧职位列表 (可滚动区域) */
+.seat-list-area {
+  flex: 1;
+  background-color: #fff;
+  height: 100%; /* 继承父容器高度 */
+  padding: 0 15px;
+  z-index: 5;
+  position: relative;
+  min-width: 0;  
+}
+
+.seat-category-title {
+  font-size: 16px; /* 字体缩小 */
+  font-weight: bold;
+  padding: 12px 0 8px 0; /* 相应缩小内边距 */
+  color: #333;
+}
+
+.seat-item {
+  display: flex;
+  padding: 8px 0; /* 调整内边距 */
+  border-bottom: 1px solid #eee;
+  align-items: flex-start; /* 顶部对齐 */
+  cursor: pointer;  
+  min-width: 0;
+  width: 100%;  
+}
+
+/* 状态样式保持不变 */
+.seat-item.booked {  
+  opacity: 0.7;  
+}
+.seat-item.bookable {  
+  opacity: 1;
+}
+
+/* 图片容器样式 */
+.seat-image-wrapper {
+  position: relative;
+  width: 70px; /* 相应缩小图片大小 */
+  height: 70px; /* 相应缩小图片大小 */
+  margin-right: 10px; /* 缩小间距 */
+  flex-shrink: 0;
+}
+
+.seat-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #eee;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* ------------------------------------------- */
+/* ⭐ 职位信息区域 强制截断关键样式 */
+/* ------------------------------------------- */
+.seat-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;  
+  padding: 0; /* 移除内边距，让内容更紧凑 */
+  min-width: 0;  
+}
+
+.seat-row {
+    display: flex;  
+    align-items: center;
+    line-height: 1.2; /* 缩小行高 */
+    margin-bottom: 2px; /* 缩小行间距 */
+    width: 100%;
+    overflow: hidden;  
+}
+
+/* 图标基础样式 */
+.info-icon {
+    font-size: 13px; /* 图标大小缩小 */
+    margin-right: 4px; /* 缩小间距 */
+    flex-shrink: 0;  
+}
+
+/* 通用信息文本样式 */
+.info-text {
+    flex: 1;  
+    font-size: 10px; /* 基础文字缩小 */
+    color: #666;
+    line-height: inherit;
+    display: block;  
+    
+    /* ⭐ 关键：移除单行截断，因为它会干扰 webkit-line-clamp */
+    /* white-space: nowrap;  <-- 不使用 */
+    /* overflow: hidden;     <-- 不使用 */
+    /* text-overflow: ellipsis; <-- 不使用 */
+    min-width: 0;  
+}
+
+
+/* 1. Title 行 - 样式定制 */
+.title-row {
+    font-size: 16px; /* 标题字体缩小 */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px; /* 缩小间距 */
+    display: block;  
+}
+.seat-title-text {
+    /* ⭐ 标题保持单行截断 */
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    font-size: 12px; /* 标题字体缩小 */
+    font-weight: bold;
+    color: #333;
+    line-height: 1.2;
+    min-width: 0;  
+}
+
+/* 2. 日期行 */
+.date-line .info-text {
+    color: #999;
+}
+
+/* 3. 薪资行 */
+.salary-line .info-text {
+    color: #e51c23; /* 突出薪资 */
+    font-weight: bold;
+}
+
+/* 4. 职责行 - 样式定制 */
+.duty-line {
+    margin-bottom: 0;
+}
+.duty-line .info-text {
+    color: #666;
+    
+    /* ⭐ 核心修改：使用 FlexBox 多行截断（用于兼容小程序/旧版浏览器） */
+    display: -webkit-box; /* 必须设置，将对象作为弹性伸缩盒子模型显示 */
+    -webkit-box-orient: vertical; /* 必须设置，从上到下垂直排列子元素 */
+    -webkit-line-clamp: 1; /* ⭐ 限制行数为 1 行（符合您的“单行”需求） */
+    overflow: hidden; /* 必须设置，溢出隐藏 */
+    text-overflow: ellipsis; /* 必须设置，溢出部分显示省略号 */
+    
+    /* 强制宽度和 flex 属性 */
+    flex: 1; 
+    width: 100%; 
+    min-width: 0;
+}
+
+
+.empty-list-tip {
+  text-align: center;
+  padding: 30px 0; /* 相应缩小内边距 */
+  color: #999;
+  font-size: 13px; /* 字体缩小 */
+}

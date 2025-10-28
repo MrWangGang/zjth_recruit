@@ -1,0 +1,127 @@
+<view class="auth-overlay-fixed" wx:if="{{isAuthModalVisible}}">
+  <view class="auth-form-card-compact">
+    
+    <text class="title-main-compact">个人信息填写</text>
+    <text class="title-sub-compact">请完善信息以完成注册</text>
+
+    <button class="avatar-auth-btn-compact" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      <image class="avatar-auth-img-compact" src="{{authAvatarUrl}}"></image>
+      <view class="avatar-hint-compact">点击选择头像 (必选)</view>
+    </button> 
+    
+    <view class="input-group-center-compact">
+      <input 
+          type="nickname" 
+          class="input-field-center-compact" 
+          placeholder="请填写真实姓名 (必填)"
+          value="{{authNickName}}"
+          bindinput="onNicknameInput"
+      />
+    </view>
+    
+    <block wx:if="{{authStep === 'basic'}}">
+        <button  
+            class="login-submit-btn-compact"  
+            type="primary"  
+            bindtap="handleBasicAuthSubmit"
+            disabled="{{authAvatarUrl === defaultAvatarUrl || !authNickName}}">
+              一键登录/授权
+        </button>
+    </block>
+
+    <block wx:if="{{authStep === 'full'}}">
+        
+        <view class="info-group-compact">
+          <text class="info-label-compact">手机号</text>
+          <input 
+              type="number" 
+              maxlength="11"
+              class="info-input-field-compact" 
+              placeholder="请输入手机号码 (必填)"
+              value="{{phoneNumber}}"
+              bindinput="onPhoneInput"
+          />
+        </view>
+
+        <view class="info-group-compact">
+          <text class="info-label-compact">性别</text>
+          <view class="radio-group-compact">
+              <view class="radio-item-compact" bindtap="selectGender" data-value="男">
+                  <text>男</text>
+                  <view class="radio-dot {{gender === '男' ? 'checked' : ''}}"></view>
+              </view>
+              <view class="radio-item-compact" bindtap="selectGender" data-value="女">
+                  <text>女</text>
+                  <view class="radio-dot {{gender === '女' ? 'checked' : ''}}"></view>
+              </view>
+          </view>
+        </view>
+        
+        <view class="info-group-compact">
+          <text class="info-label-compact">年龄</text>
+          <input type="number" maxlength="3" class="info-input-field-compact" placeholder="请输入年龄 (必填)" value="{{age}}" bindinput="onAgeInput"/>
+        </view>
+        
+        <view class="info-group-compact">
+          <text class="info-label-compact">籍贯</text>
+          <picker mode="region" value="{{region}}" bindchange="onRegionChange">
+            <view class="info-value-compact">{{regionDisplay}}</view>
+          </picker>
+        </view>
+        
+        <view class="info-group-compact">
+          <text class="info-label-compact">学历</text>
+          <picker mode="selector" range="{{educationArray}}" value="{{educationIndex}}" bindchange="onEducationChange">
+            <view class="info-value-compact">{{educationIndex === null ? '请选择学历 (必选)' : educationArray[educationIndex]}}</view>
+          </picker>
+        </view>
+        
+        <view class="info-group-compact">
+          <text class="info-label-compact">全日制</text>
+          <view class="radio-group-compact">
+              <view class="radio-item-compact" bindtap="selectFullTime" data-value="是">
+                  <text>是</text>
+                  <view class="radio-dot {{isFullTime === '是' ? 'checked' : ''}}"></view>
+              </view>
+              <view class="radio-item-compact" bindtap="selectFullTime" data-value="否">
+                  <text>否</text>
+                  <view class="radio-dot {{isFullTime === '否' ? 'checked' : ''}}"></view>
+              </view>
+          </view>
+        </view>
+        
+        <view class="info-group-compact">
+          <text class="info-label-compact">院校</text>
+          <input type="text" class="info-input-field-compact" placeholder="请输入院校名称 (必填)" value="{{schoolName}}" bindinput="onSchoolNameInput"/>
+        </view>
+        
+        <view class="info-group-compact">
+          <text class="info-label-compact">专业</text>
+          <input type="text" class="info-input-field-compact" placeholder="请输入专业名称 (必填)" value="{{major}}" bindinput="onMajorInput"/>
+        </view>
+        
+        <view class="info-group-compact">
+          <text class="info-label-compact">毕业时间</text>
+          <picker mode="date" value="{{graduationDate}}" bindchange="onDateChange" fields="month">
+            <view class="info-value-compact">{{graduationDate || '请选择毕业年月 (必选)'}}</view>
+          </picker>
+        </view>
+        
+        <view class="info-group-compact last-group">
+          <text class="info-label-compact">简历上传</text>
+          <button class="resume-upload-btn-compact" bindtap="chooseResume">
+            {{resumePath ? '已上传: ' + resumeFileName : '点击上传简历 (必选)'}}
+          </button>
+        </view>
+        
+        <button  
+            class="login-submit-btn-compact"  
+            type="primary"  
+            bindtap="submitAuthAndLogin"
+            disabled="{{!gender || !age || region.length === 0 || educationIndex === null || !isFullTime || !schoolName || !major || !graduationDate || !resumePath || !phoneNumber}}">
+              提交完整信息
+        </button>
+    </block>
+
+  </view>
+</view>

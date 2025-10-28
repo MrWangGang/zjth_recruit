@@ -1,0 +1,48 @@
+<scroll-view scroll-y class="container">
+  <view class="header">
+    <text class="title">照片墙</text>
+    <text class="subtitle">分享我们的点滴精彩瞬间</text>
+  </view>
+
+  <view class="photo-grid">
+    <view class="photo-card">
+      <image class="photo" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/1.jpg" mode="aspectFill"></image>
+    </view>
+    <view class="photo-card">
+      <image class="photo" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/2.jpg" mode="aspectFill"></image>
+    </view>
+    <view class="photo-card">
+      <image class="photo" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/3.jpg" mode="aspectFill"></image>
+    </view>
+    <view class="photo-card">
+      <image class="photo" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/4.jpg" mode="aspectFill"></image>
+    </view>
+    <view class="photo-card">
+      <image class="photo" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/5.jpg" mode="aspectFill"></image>
+    </view>
+    <view class="photo-card">
+      <image class="photo" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/6.jpg" mode="aspectFill"></image>
+    </view>
+    <view class="photo-card">
+      <image class="photo" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/7.jpg" mode="aspectFill"></image>
+    </view>
+    <view class="photo-card">
+      <image class="photo" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/8.jpg" mode="aspectFill"></image>
+    </view>
+    <view class="photo-card">
+      <image class="photo" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/9.jpg" mode="aspectFill"></image>
+    </view>
+    <view class="photo-card">
+      <image class="photo" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/10.jpg" mode="aspectFill"></image>
+    </view>
+    <view class="photo-card">
+      <image class="photo" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/11.jpg" mode="aspectFill"></image>
+    </view>
+    <view class="photo-card">
+      <image class="photo" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/12.jpg" mode="aspectFill"></image>
+    </view>
+    <view class="photo-card">
+      <image class="photo" src="cloud://cloud1-5gubwxe85b798ff4.636c-cloud1-5gubwxe85b798ff4-1381914959/素材/13.jpg" mode="aspectFill"></image>
+    </view>
+  </view>
+</scroll-view>

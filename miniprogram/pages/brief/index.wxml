@@ -1,0 +1,50 @@
+<scroll-view class="container" scroll-y>
+    <!-- 顶层容器：模拟纸张或卡片的质感 -->
+    <view class="main-card">
+        
+        <!-- 头部与标题 -->
+        <view class="header-section">
+            <text class="title">浙江泰鸿万立科技股份有限公司</text>
+            <text class="subtitle text-primary">集研发、生产、销售、服务为一体的综合性汽车零部件配套企业</text>
+        </view>
+
+        <!-- 1. 公司简介与核心价值 -->
+        <view class="content-section">
+            <text class="section-title border-primary">公司简介</text>
+            
+            <!-- ⭐ 绑定主要公司简介内容 (大段文本) -->
+            <!-- 实际项目中，此长文本 profile 应该在 JS 中被分割成段落数组再进行绑定 -->
+            <view class="rich-text-content">
+                <text class="paragraph">{{companyInfo.profile}}</text>
+            </view>
+        </view>
+
+        <!-- 2. 发展历程与里程碑 -->
+        <view class="content-section rich-text-content">
+            <text class="section-title border-primary">发展历程与重大里程碑</text>
+            
+            <view class="timeline-list">
+                <!-- ⭐ 动态绑定 Milestones 数组 -->
+                <view class="timeline-item timeline-bg" wx:for="{{companyInfo.milestones}}" wx:key="year">
+                    <text class="timeline-strong text-teal">{{item.year}}</text>
+                    <text class="timeline-text">{{item.event}}</text>
+                </view>
+            </view>
+        </view>
+ 
+
+        <!-- 底部联系信息 -->
+        <view class="footer-section">
+            <text class="footer-title">期待与您携手共创辉煌。</text>
+            
+            <!-- ⭐ 动态绑定 Contact Info -->
+            <text class="footer-contact">电话/传真: {{companyInfo.contact.phone}}</text>
+            <text class="footer-contact">邮箱: {{companyInfo.contact.email}}</text>
+            <text class="footer-contact">老厂地址: {{companyInfo.contact.addressOld}}</text>
+            <text class="footer-contact">新厂地址: {{companyInfo.contact.addressNew}}</text>
+            <view class="footer-copyright">{{companyInfo.contact.copyright}}</view>
+        </view>
+
+    </view>
+
+</scroll-view>
