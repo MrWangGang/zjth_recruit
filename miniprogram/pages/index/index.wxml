@@ -31,7 +31,7 @@
                    bindtap="goToBannerDetail"  
                    data-id="{{item.id}}"
                    data-link="{{item.link}}">
-        <image class="banner-img" src="{{item.url}}" mode="aspectFill"></image>
+        <image class="banner-img" src="{{item.url}}" mode="widthFix"></image>
       </swiper-item>
     </swiper>
   
