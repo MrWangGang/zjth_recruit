@@ -150,18 +150,27 @@ Component({
             this.setData({ graduationDate: e.detail.value });
         },
         chooseResume() {
-            wx.chooseMessageFile({
-                count: 1, type: 'file', extension: ['pdf'], 
+            // ⭐⭐⭐ 已修改为 wx.chooseMedia 并移除 PDF 检查 ⭐⭐⭐
+            wx.chooseMedia({
+                count: 1, 
+                mediaType: ['mix'], // 选择图片和视频
+                sourceType: ['album', 'camera'], // 允许从相册或相机选择
+                
                 success: (res) => {
                     const tempFile = res.tempFiles[0];
-                    if (tempFile.name.toLowerCase().endsWith('.pdf')) {
+                    const tempFilePath = tempFile.tempFilePath;
+                    
+                    if (tempFilePath) {
+                        // 移除 PDF 后缀检查，接受任何 wx.chooseMedia 返回的文件
                         this.setData({ 
-                            resumePath: tempFile.path, 
-                            resumeFileName: tempFile.name || '已选择文件.pdf' 
+                            resumePath: tempFilePath, 
+                            // 尝试构造文件名，使用路径的最后一部分
+                            resumeFileName: tempFilePath.split('/').pop() || '已选择文件' 
                         });
                         wx.showToast({ title: '简历已选定', icon: 'none' });
                     } else {
-                         wx.showToast({ title: '请选择 PDF 文件', icon: 'error' });
+                        // 仅处理选择文件失败的情况
+                        wx.showToast({ title: '选择文件失败', icon: 'none' });
                     }
                 },
                 fail: () => {
@@ -257,10 +266,10 @@ Component({
         async submitAuthAndLogin() {
             const { authNickName, gender, age, region, educationIndex, educationArray, isFullTime, schoolName, major, graduationDate, resumePath, resumeFileName, regionDisplay, phoneNumber, tempOpenId } = this.data;
             
-            // 1. 必填项校验 (针对完整表单，手机号不再是必填项)
+            // 1. 必填项校验 
             const requiredFields = [
                 [!!authNickName.trim(), '姓名不能为空'], 
-                [!!phoneNumber.trim(), '手机号不能为空'], // ⭐ 移除手机号必填校验
+                [!!phoneNumber.trim(), '手机号不能为空'], // ⭐ 手机号必填校验已保留
                 [!!gender, '请选择性别'], 
                 [!!age.trim(), '年龄不能为空'], 
                 [region.length > 0, '请选择籍贯'], 
@@ -288,7 +297,7 @@ Component({
             const userInfo = { 
                 nickName: authNickName, 
                 avatarUrl: this.data.authAvatarUrl, 
-                phone: phoneNumber.trim() || null, // ⭐ 关键：发送手机号，如果是空字符串则发送 null
+                phone: phoneNumber.trim() || null, 
                 gender: gender, age: parseInt(age), 
                 region: regionDisplay, 
                 education: educationArray[educationIndex], 
