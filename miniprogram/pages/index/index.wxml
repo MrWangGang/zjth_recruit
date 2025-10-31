@@ -98,4 +98,3 @@
   </scroll-view>
   
   
-  <authorize bindloginsuccess="onLoginSuccess" wx:if="{{!isLoggedIn}}"></authorize>
